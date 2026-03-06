@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/zones")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ZoneController {
 
     private final ZoneRepository zoneRepository;
