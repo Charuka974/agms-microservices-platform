@@ -1,0 +1,47 @@
+# ============================
+# Node Modules
+# These are installed via npm/yarn and should NOT be pushed to GitHub
+# because they are large and auto-generated.
+# ============================
+node_modules/
+
+
+# ============================
+# Environment Variables
+# Contains secrets like JWT keys, DB passwords.
+# MUST NOT be pushed to GitHub for security reasons.
+# ============================
+.env
+
+
+# ============================
+# Logs
+# App logs and debug info — not needed in repo
+# ============================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ============================
+# Build / Dist Files
+# Auto-generated when building TypeScript/Node projects
+# ============================
+dist/
+build/
+
+
+# ============================
+# Temporary Files
+# OS / Editor generated files
+# ============================
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# TypeScript cache
+*.tsbuildinfo
