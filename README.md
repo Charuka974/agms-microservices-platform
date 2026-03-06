@@ -15,6 +15,3 @@ It provides modular services for monitoring environmental conditions, controllin
 6. **Automation Service** – Controls devices like fans and irrigation based on rules.  
 7. **Config Server** – Centralized configuration for all services.
 
----
-
-## Project Structure (Sensor Service Example)
