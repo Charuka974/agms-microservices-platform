@@ -17,6 +17,8 @@ public class Zone {
 
     private String name;
 
+    private String deviceId;
+
     private Double minTemperature;
     private Double maxTemperature;
 
