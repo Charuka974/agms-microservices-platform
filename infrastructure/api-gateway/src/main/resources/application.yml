@@ -2,34 +2,37 @@ spring:
   application:
     name: api-gateway
 
-  cloud:
-    gateway:
-      server:
-        webflux:
-          default-filters:
-            - StripPrefix=1
-          routes:
-            - id: automation-service
-              uri: lb://automation-service
-              predicates:
-                - Path=/automation-service/**
-            - id: crop-service
-              uri: lb://crop-service
-              predicates:
-                - Path=/crop-service/**
-            - id: sensor-service
-              uri: lb://sensor-service
-              predicates:
-                - Path=/sensor-service/**
-            - id: zone-service
-              uri: lb://zone-service
-              predicates:
-                - Path=/zone-service/**
+  config:
+    import: optional:config-server:http://localhost:8888
 
-server:
-  port: 8080
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          default-filters:
+#            - StripPrefix=1
+#          routes:
+#            - id: automation-service
+#              uri: lb://automation-service
+#              predicates:
+#                - Path=/automation-service/**
+#            - id: crop-service
+#              uri: lb://crop-service
+#              predicates:
+#                - Path=/crop-service/**
+#            - id: sensor-service
+#              uri: lb://sensor-service
+#              predicates:
+#                - Path=/sensor-service/**
+#            - id: zone-service
+#              uri: lb://zone-service
+#              predicates:
+#                - Path=/zone-service/**
+#
+#server:
+#  port: 8080
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
