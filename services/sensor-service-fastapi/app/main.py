@@ -8,15 +8,37 @@ from app.routes.sensor_routes import router as sensor_router
 from app.services.sensor_service import fetch_external_telemetry
 import asyncio
 
-PORT = 8082
+
+def fetch_config():
+    try:
+        response = requests.get("http://localhost:8888/sensor-service/default")
+        config = response.json()
+        # Extract values from the Spring Cloud Config JSON format
+        # This logic parses the propertySources returned by the Config Server
+        props = {}
+        for source in config['propertySources']:
+            props.update(source['source'])
+        return props
+    except Exception as e:
+        print(f"Config Server Offline: Using local defaults. Error: {e}")
+        return {
+            "server.port": 8082,
+            "eureka.client.service-url.defaultZone": "http://localhost:8761/eureka"
+        }
+
+CONFIG = fetch_config()
+PORT = int(CONFIG.get("server.port", 8082))
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Register with Eureka
+    # Use the URL fetched from the Config Server
+    eureka_url = CONFIG.get("eureka.client.service-url.defaultZone")
+
     await eureka_client.init_async(
-        eureka_server="http://localhost:8761/eureka",
-        app_name="SENSOR-SERVICE",
-        instance_port=PORT
+        eureka_server=eureka_url,
+        app_name="sensor-service",
+        instance_port=PORT,
+        instance_host="127.0.0.1" # Fixed the IP timeout issue from earlier!
     )
 
     # Start the 10-second background task
