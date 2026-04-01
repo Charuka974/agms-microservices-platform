@@ -1,0 +1,48 @@
+#spring:
+#  application:
+#    name: crop-service
+#
+#  config:
+#    import: "configserver:http://localhost:8888"
+#
+
+# ===============================
+# Application & Config Settings
+# ===============================
+server:
+  port: 8084
+
+spring:
+  application:
+    name: crop-service
+
+  # 1. Config Import (Use 'optional:' to prevent startup crashes)
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
+  # 2. Database Settings (Fallback if not in Config Server)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/agms_crop_db
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+
+  # 3. JPA Settings
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# ===============================
+# Service Discovery
+# ===============================
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
