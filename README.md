@@ -14,8 +14,8 @@ The project implements a **Cloud-Native Microservices Architecture** designed fo
 ### 🔌 Core Infrastructure
 * **API Gateway (Port 8080):** The single entry point. Implements **JWT Security** and dynamic routing.
 * **Service Discovery (Eureka, Port 8761):** Facilitates service registration and heartbeat monitoring.
-* **Config Server (Port 8888):** Centralized property management using a **Git-backed repository**.
-
+* **Config Server (Port 8888):** Centralized property management.
+    * 🔗 **External Configuration Repository:** [agms-microservices-config](https://github.com/Charuka974/agms-microservices-config.git)
 ### 🛠️ Domain Services
 | Service | Tech Stack | Responsibility |
 | :--- | :--- | :--- |
