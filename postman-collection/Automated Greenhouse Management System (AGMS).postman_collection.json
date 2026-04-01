@@ -1,0 +1,612 @@
+{
+  "info": {
+    "_postman_id": "4f8ab192-4be3-470c-9c0e-6000958045b8",
+    "name": "Automated Greenhouse Management System (AGMS)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44945762",
+    "_collection_link": "https://go.postman.co/collection/44945762-4f8ab192-4be3-470c-9c0e-6000958045b8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Zone Management Service (Port 8081)",
+      "item": [
+        {
+          "name": "Create New Zone",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjQ2NzIsImV4cCI6MTc3NTA2ODI3Mn0.IBERjviuTexhqtvpOIR4HgDBnga4shmV6-9fEA8CvKP_TaywkBhGQyA-oizuYgaa2Dqo04baJD8QlEzRJnXMqQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Greenhouse Beta\",\r\n    \"minTemperature\": 24.5,\r\n    \"maxTemperature\": 32.0,\r\n    \"minHumidity\": 60.0,\r\n    \"maxHumidity\": 85.0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/zone-service/api/zones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "zone-service",
+                "api",
+                "zones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Zones",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjMwNTQsImV4cCI6MTc3NTA2NjY1NH0.JcxAYwMRocL6ghotXGQ2xk9ys7y20coN8psqIooy_PTznvblnUCXlCdoY8b-oTRRWMNv6UeQppPUAdNw7NJg5Q",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/zone-service/api/zones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "zone-service",
+                "api",
+                "zones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Zone by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/zone-service/api/zones/23",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "zone-service",
+                "api",
+                "zones",
+                "23"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Zone Thresholds",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Greenhouse Alpha - Seedling Stage\",\r\n    \"minTemperature\": 24.5,\r\n    \"maxTemperature\": 32.0,\r\n    \"minHumidity\": 45.0,\r\n    \"maxHumidity\": 80.0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/zone-service/api/zones/23",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "zone-service",
+                "api",
+                "zones",
+                "23"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Zone",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/zone-service/api/zones/26",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "zone-service",
+                "api",
+                "zones",
+                "26"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sensor Telemetry Service (Port 8082)",
+      "item": [
+        {
+          "name": "View Sensor History",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjQ2NzIsImV4cCI6MTc3NTA2ODI3Mn0.IBERjviuTexhqtvpOIR4HgDBnga4shmV6-9fEA8CvKP_TaywkBhGQyA-oizuYgaa2Dqo04baJD8QlEzRJnXMqQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/sensor-service/api/sensors/history",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sensor-service",
+                "api",
+                "sensors",
+                "history"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Store Manual Sensor Data",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjQ2NzIsImV4cCI6MTc3NTA2ODI3Mn0.IBERjviuTexhqtvpOIR4HgDBnga4shmV6-9fEA8CvKP_TaywkBhGQyA-oizuYgaa2Dqo04baJD8QlEzRJnXMqQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"deviceId\": \"ESP32-SENSOR-002\",\r\n    \"zoneId\": \"2\",\r\n    \"value\": {\r\n        \"temperature\": 28.5,\r\n        \"humidity\": 65.0\r\n    },\r\n    \"capturedAt\": \"2026-04-01T20:30:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/sensor-service/api/sensors/data",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "sensor-service",
+                "api",
+                "sensors",
+                "data"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Automation & Control Service (Port 8083)",
+      "item": [
+        {
+          "name": "Process Telemetry & Trigger Rules",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"zoneId\": \"1\",\r\n    \"temperature\": 35.5\r\n}\r\n\r\n// {\r\n//     \"zoneId\": \"1\",\r\n//     \"temperature\": 15.0\r\n// }\r\n\r\n// {\r\n//     \"zoneId\": \"1\",\r\n//     \"temperature\": 24.0\r\n// }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/automation-service/api/automation/process",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "automation-service",
+                "api",
+                "automation",
+                "process"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "View Automation Logs",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/automation-service/api/automation/logs",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "automation-service",
+                "api",
+                "automation",
+                "logs"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Crop Inventory Service (Port 8084)",
+      "item": [
+        {
+          "name": "Register New Crop Batch",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"batchName\": \"Premium Rice Batch A\",\r\n    \"zoneId\": \"ZONE_001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/crop-service/api/crops",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "crop-service",
+                "api",
+                "crops"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Inventory",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/crop-service/api/crops",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "crop-service",
+                "api",
+                "crops"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Lifecycle Stage",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGYXJtZXJKb2UiLCJpYXQiOjE3NzUwNjM0NTgsImV4cCI6MTc3NTA2NzA1OH0.UHTVcTI_AwYafCfgQrgvLnWut3k7iu9gQ14mPVtehH918CQkLj8AbaoRZhoxs-xy6qIWYkE9QvbxRJgsMiO0ug",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"VEGETATIVE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/crop-service/api/crops/3/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "crop-service",
+                "api",
+                "crops",
+                "3",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IOT api auth",
+      "item": [
+        {
+          "name": "IOT api register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"charuka\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://104.211.95.241:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "104",
+                "211",
+                "95",
+                "241"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "IOT api login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"charuka\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://104.211.95.241:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "104",
+                "211",
+                "95",
+                "241"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API Gateway Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"farmer\",\r\n    \"password\": \"1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
