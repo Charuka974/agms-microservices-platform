@@ -17,8 +17,8 @@ interface TelemetryData {
 }
 
 interface ZoneThresholds {
-    minTemp: number;
-    maxTemp: number;
+    minTemperature: number;
+    maxTemperature: number;
 }
 
 interface ActionLog {
@@ -32,19 +32,34 @@ interface ActionLog {
 const actionLogs: ActionLog[] = [];
 
 // --- 2. Eureka Registration [cite: 10, 116] ---
+// --- 2. Eureka Registration ---
 const client = new Eureka({
     instance: {
-        app: 'AUTOMATION-SERVICE',
+        app: 'automation-service', // Stick to Uppercase to match Spring standards
         hostName: 'localhost',
         ipAddr: '127.0.0.1',
-        port: { '$': PORT, '@enabled': true },
-        vipAddress: 'AUTOMATION-SERVICE',
-        dataCenterInfo: { '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo', name: 'MyOwn' },
+        // Use the numeric PORT here
+        port: {
+            '$': PORT,
+            '@enabled': true
+        },
+        vipAddress: 'automation-service',
+        // IMPORTANT: These fields fix the "n/a" issue in the Eureka dashboard
+        homePageUrl: `http://localhost:${PORT}/`,
+        statusPageUrl: `http://localhost:${PORT}/api/automation/logs`, // Or a health endpoint
+        healthCheckUrl: `http://localhost:${PORT}/health`,
+        dataCenterInfo: {
+            '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
+            name: 'MyOwn'
+        },
     },
     eureka: {
-        host: 'localhost', // Eureka Server Host
+        host: 'localhost',
         port: 8761,
         servicePath: '/eureka/apps/',
+        // Recommended: check for updates every 30 seconds
+        fetchRegistry: true,
+        registerWithEureka: true,
     },
 });
 client.start();
@@ -53,22 +68,18 @@ client.start();
 app.post('/api/automation/process', async (req: Request, res: Response): Promise<any> => {
     const { zoneId, temperature } = req.body;
 
-    if (!zoneId || temperature === undefined) {
-        return res.status(400).json({ error: "Missing zoneId or temperature" });
-    }
-
     try {
-        // Step 1: Fetch thresholds from Zone Service (Port 8081) [cite: 120, 144]
-        // In a real microservice env, you'd use the Gateway or Eureka name
         const zoneResponse = await axios.get<ZoneThresholds>(`http://localhost:8081/api/zones/${zoneId}`);
-        const { minTemp, maxTemp } = zoneResponse.data;
+
+        // Use the correct Java field names here
+        const { minTemperature, maxTemperature } = zoneResponse.data;
 
         let action = "KEEP_STABLE";
 
-        // Step 2: Apply Decision Rules
-        if (temperature > maxTemp) {
+        // Step 2: Apply Decision Rules with correct variables
+        if (temperature > maxTemperature) {
             action = "TURN_FAN_ON";
-        } else if (temperature < minTemp) {
+        } else if (temperature < minTemperature) {
             action = "TURN_HEATER_ON";
         }
 
